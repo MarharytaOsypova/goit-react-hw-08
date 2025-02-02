@@ -27,7 +27,7 @@ const App = () => {
   <div>
       <Routes>
  <Route path="/" element={<Layout/>}>
-        <Route index element={<HomePage/>} />
+        <Route index element={<PrivateRoute><HomePage/></PrivateRoute>} />
         <Route path="/contacts" element={<PrivateRoute><ContactsPage /></PrivateRoute>} />
         </Route> 
         <Route path="*" element={<NotFound />} />
