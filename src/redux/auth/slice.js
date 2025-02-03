@@ -30,6 +30,9 @@ const authSlice = createSlice({
             state.user = action.payload.user
             state.token = action.payload.token
       })
+           .addCase(refreshUserThunk.pending, (state) => {
+           state.isRefreshing = true;
+})
             .addCase(logoutThunk.fulfilled, () => {
            return initialState
             })
@@ -37,8 +40,12 @@ const authSlice = createSlice({
             state.isLoggedIn = true
             state.user.name = action.payload.name
             state.user.email = action.payload.email
+            state.isRefreshing = false;
             
-      })
+            })
+            .addCase(refreshUserThunk.rejected, (state) => { 
+            state.isRefreshing = false;
+      });
     }
 })
 
